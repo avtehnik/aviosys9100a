@@ -18,7 +18,7 @@
 //
 // User provided parameters
 $camurl="http://192.168.1.3/GetData.cgi";
-$imgpath="./";             // directory where to store images
+$imgpath="./images/";             // directory where to store images
 $fname="img";              // image file name without extension
 $log=1;                    // debugging / log flag
 $maxcams=4;                // max cams 1-4
@@ -73,10 +73,9 @@ if (!$fvid) {
         unlink("$imgfile-$cport.jpg");
       }
       if ($log) echo "saving image file $imgfile-$cport.jpg\n";
-      if ($fimg=fopen("$imgfile-$cport.jpg","wb")) {
-        fwrite($fimg,$frame);
-        fclose($fimg);
-      }
+	  
+	  file_put_contents("$imgfile-$cport.jpg" ,$frame); 
+	  
       $camnum++;
       if ($camnum==$maxcams) $loop=$maxloop;
     }
